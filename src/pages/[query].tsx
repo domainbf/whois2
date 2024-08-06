@@ -187,21 +187,21 @@ function ResultTable({ result, target }: ResultTableProps) {
     result && (
       <table className={`w-full text-sm mb-4 whitespace-pre-wrap`}>
         <tbody>
-          <Row name={`域名`} value={result.domain || target.toUpperCase()} />
-          <Row name={`状态`} value={<StatusComp />} />
+          <Row name={`域名:`} value={result.domain || target.toUpperCase()} />
+          <Row name={`状态:`} value={<StatusComp />} />
           <Row
-            name={`商家`}
+            name={`注册商:`}
             value={result.registrar}
             hidden={!result.registrar || result.registrar === "Unknown"}
           />
           <Row
-            name={`网址`}
+            name={`网址:`}
             value={result.registrarURL}
             likeLink
             hidden={!result.registrarURL || result.registrarURL === "Unknown"}
           />
           <Row
-            name={`注册商 ID`}
+            name={`注册商ID:`}
             value={result.ianaId}
             hidden={!result.ianaId || result.ianaId === "N/A"}
           >
@@ -255,28 +255,28 @@ function ResultTable({ result, target }: ResultTableProps) {
           {/* IP Whois Only End */}
 
           <Row
-            name={`WHOIS`}
+            name={`WHOIS:`}
             value={result.whoisServer}
             likeLink
             hidden={!result.whoisServer || result.whoisServer === "Unknown"}
           />
 
           <Row
-            name={`注册日期`}
+            name={`注册日期:`}
             value={toReadableISODate(result.creationDate)}
             hidden={!result.creationDate || result.creationDate === "Unknown"}
           >
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`更新日期`}
+            name={`更新日期:`}
             value={toReadableISODate(result.updatedDate)}
             hidden={!result.updatedDate || result.updatedDate === "Unknown"}
           >
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`到期日期`}
+            name={`到期日期:`}
             value={toReadableISODate(result.expirationDate)}
             hidden={
               !result.expirationDate || result.expirationDate === "Unknown"
@@ -285,7 +285,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`公司`}
+            name={`公司:`}
             value={result.registrantOrganization}
             hidden={
               !result.registrantOrganization ||
@@ -293,7 +293,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`地址`}
+            name={`地址:`}
             value={result.registrantProvince}
             hidden={
               !result.registrantProvince ||
@@ -301,7 +301,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`国家`}
+            name={`国家:`}
             value={result.registrantCountry}
             hidden={
               !result.registrantCountry ||
@@ -309,7 +309,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`联系电话`}
+            name={`联系电话:`}
             value={result.registrantPhone}
             hidden={
               !result.registrantPhone || result.registrantPhone === "Unknown"
@@ -318,14 +318,14 @@ function ResultTable({ result, target }: ResultTableProps) {
             <InfoText content={`Abuse`} />
           </Row>
           <Row
-            name={`联系邮箱`}
+            name={`联系邮箱:`}
             value={result.registrantEmail}
             hidden={
               !result.registrantEmail || result.registrantEmail === "Unknown"
             }
           />
           <Row
-            name={`域名 DNS`}
+            name={`域名DNS:`}
             value={
               <div className={`flex flex-col`}>
                 {result.nameServers.map((ns, index) => (
@@ -342,7 +342,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
             hidden={result.nameServers.length === 0}
           />
-          <Row name={`DNSSEC`} value={result.dnssec} hidden={!result.dnssec}>
+          <Row name={`DNSSEC:`} value={result.dnssec} hidden={!result.dnssec}>
             <Icon
               className={`inline w-3.5 h-3.5 ml-1.5`}
               icon={getDnssecIcon(result.dnssec)}
@@ -551,11 +551,11 @@ export default function Lookup({ data, target }: Props) {
         >
           Powered by{" "}
           <Link
-            href={`https://www.atomao.com`}
+            href={`https://nic.bn`}
             target={`_blank`}
             className={`text-primary underline underline-offset-2 mx-1`}
           >
-            Atomao Cloud
+            NIC.BN Ltd
           </Link>
           <Badge variant={`outline`}>v{VERSION}</Badge>
         </div>
