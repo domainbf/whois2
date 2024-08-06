@@ -31,6 +31,16 @@ export default function Home() {
     setLoading(true);
   };
 
+  const handleFocus = () => {
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+  };
+
+  const handleBlur = () => {
+    document.body.style.position = '';
+    document.body.style.width = '';
+  };
+
   return (
     <>
       <Head>
@@ -49,7 +59,7 @@ export default function Home() {
             <Search
               className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`}
             />
-             WHOIS.LS
+            WHOIS.LS
           </h1>
           <div
             className={"flex flex-row items-center flex-wrap justify-center mt-1"}
@@ -107,6 +117,8 @@ export default function Home() {
                   window.location.href = toSearchURI(domain);
                 }
               }}
+              onFocus={handleFocus} // 添加 onFocus 事件
+              onBlur={handleBlur} // 添加 onBlur 事件
               style={{ touchAction: 'manipulation', userSelect: 'none' }} // 禁止页面缩放
             />
             <Link
