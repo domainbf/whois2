@@ -97,7 +97,7 @@ export default function Home() {
                 window.location.href = toSearchURI(domain);
               }
             }}
-            style={{ touchAction: 'manipulation' }} // 禁止页面缩放
+            style={{ touchAction: 'manipulation', userSelect: 'none' }} // 禁止页面缩放
           />
           <Link
             href={toSearchURI(domain)}
@@ -192,3 +192,4 @@ export default function Home() {
     </main>
   );
 }
+
