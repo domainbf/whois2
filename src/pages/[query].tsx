@@ -1,3 +1,4 @@
+import DomainTable from '@/components/DomainTable';
 import { lookupWhois } from "@/lib/whois/lookup";
 import {
   cleanDomainQuery,
@@ -380,43 +381,11 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
               className={`flex flex-row items-center text-lg md:text-xl`}
             >
               结果如下
+              {/* 在这里插入 DomainTable 组件 */}
+              <DomainTable data={data} />
               {!isCapture && (
                 <Drawer>
-                  <DrawerTrigger asChild>
-                    <Button
-                      variant={`outline`}
-                      size={`icon-sm`}
-                      className={`ml-2`}
-                      tapEnabled
-                    >
-                      <Camera className={`w-4 h-4`} />
-                    </Button>
-                  </DrawerTrigger>
-                  <DrawerContent>
-                    <DrawerHeader>
-                      <DrawerTitle>Result Capture</DrawerTitle>
-                      <DrawerClose />
-                    </DrawerHeader>
-                    <div className={`my-2`}>
-                      <ResultComp
-                        data={data}
-                        target={target}
-                        ref={captureObject}
-                        isCapture={true}
-                      />
-                    </div>
-                    <DrawerFooter>
-                      <Button
-                        variant={`outline`}
-                        onClick={() => capture(`whois-${target}`)}
-                        className={`flex flex-row items-center w-full max-w-[768px] mx-auto`}
-                        tapEnabled
-                      >
-                        <Camera className={`w-4 h-4 mr-2`} />
-                        Capture
-                      </Button>
-                    </DrawerFooter>
-                  </DrawerContent>
+                  // ... 省略其他代码 ...
                 </Drawer>
               )}
               <div className={`flex-grow`} />
@@ -470,6 +439,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
     );
   },
 );
+
 
 export default function Lookup({ data, target }: Props) {
   const [inputDomain, setInputDomain] = React.useState<string>(target);
