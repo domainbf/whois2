@@ -16,7 +16,7 @@ export default function ErrorArea({ error }: ErrorAreaProps) {
     >
       <div className={`text-md inline-flex flex-row items-center`}>
         <CircleX className={`w-3.5 h-3.5 mr-1`} />
-        抱歉，我们暂未支持此后缀。
+        抱歉，碰触到我们盲区了。
       </div>
       <div className={`text-sm mt-2 text-center`}>
         <div
