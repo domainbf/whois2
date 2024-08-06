@@ -285,7 +285,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`公司:`}
+            name={`登记人:`}
             value={result.registrantOrganization}
             hidden={
               !result.registrantOrganization ||
@@ -379,7 +379,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
             <CardTitle
               className={`flex flex-row items-center text-lg md:text-xl`}
             >
-              查询结果如下
+              已获取:
               {!isCapture && (
                 <Drawer>
                   <DrawerTrigger asChild>
