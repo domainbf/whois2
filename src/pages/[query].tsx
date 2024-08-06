@@ -379,7 +379,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
             <CardTitle
               className={`flex flex-row items-center text-lg md:text-xl`}
             >
-              已获取:
+              详情如下:
               {!isCapture && (
                 <Drawer>
                   <DrawerTrigger asChild>
@@ -413,7 +413,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
                         tapEnabled
                       >
                         <Camera className={`w-4 h-4 mr-2`} />
-                        点击保存
+                        点击下载
                       </Button>
                     </DrawerFooter>
                   </DrawerContent>
@@ -456,7 +456,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
                   {!isCapture && (
                     <RichTextarea
                       className={`mt-2`}
-                      name={`域名：原始whois数据`}
+                      name={`原始whois数据可复制及下载👉`}
                       value={result?.rawWhoisContent}
                       saveFileName={`${target.replace(/\./g, "-")}-whois.txt`}
                     />
@@ -507,7 +507,7 @@ export default function Lookup({ data, target }: Props) {
             域名信息查询
           </h1>
           <p className={"text-md text-center text-secondary"}>
-            请在下方输入要查找的域名
+            请在下方输入要查找的域名或IP等信息
           </p>
           <div className={"relative flex flex-row items-center w-full mt-2"}>
             <Input
@@ -555,7 +555,7 @@ export default function Lookup({ data, target }: Props) {
             target={`_blank`}
             className={`text-primary underline underline-offset-2 mx-1`}
           >
-            NIC.BN Ltd
+            NIC.BN
           </Link>
           <Badge variant={`outline`}>v{VERSION}</Badge>
         </div>
