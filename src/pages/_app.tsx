@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
           >
             <ThemeToggle />
             <Link
-  href={`https://www.atomao.com`}
+  href={`https://www.domain.bf`}
   target={`_blank`}
 >
   <Button variant={`outline`} size={`icon`} tapEnabled>
@@ -59,6 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
     </svg>
   </Button>
 </Link>
+
 
           </div>
           <Component {...pageProps} />
