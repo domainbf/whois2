@@ -10,14 +10,14 @@ import { ThemeToggle } from "@/components/theme-switch";
 import { strEnv } from "@/lib/env";
 import { inter } from "@/lib/global";
 
-const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "Atomao Whois");
+const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "Whois");
 const siteDescription = strEnv(
   "NEXT_PUBLIC_SITE_DESCRIPTION",
-  "Next Whois Lookup Tool, Support Domain/IPv4/IPv6/ASN/CIDR Whois Lookup, Provided Beautiful, Clean and Simple UI.",
+  "Whois Lookup Tool, Support Domain/IPv4/IPv6/ASN/CIDR Whois Lookup, Provided Beautiful, Clean and Simple UI.",
 );
 const siteKeywords = strEnv(
   "NEXT_PUBLIC_SITE_KEYWORDS",
-  "Whois, Lookup, Tool, Atomao",
+  "Whois, Lookup, Tool, whois",
 );
 
 export default function App({ Component, pageProps }: AppProps) {
