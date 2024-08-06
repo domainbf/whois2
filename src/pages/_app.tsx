@@ -68,7 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
               `absolute top-4 left-4 z-50`
             )}
           >
-            <img src="/w.PNG" alt="Logo" className="w-8 h-8" />
+            <img src="/gg.gif" alt="Logo" className="w-8 h-8" />
             <div className="text-sm">{currentAnnouncement}</div>
           </div>
           <div
