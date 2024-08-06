@@ -132,7 +132,7 @@ function ResultTable({ result, target }: ResultTableProps) {
 
   const StatusComp = () => {
     if (!result || result.status.length === 0) {
-      return "未获取到结果";
+      return "N/A";
     }
 
     const status = useMemo(() => {
@@ -190,12 +190,12 @@ function ResultTable({ result, target }: ResultTableProps) {
           <Row name={`域名`} value={result.domain || target.toUpperCase()} />
           <Row name={`状态`} value={<StatusComp />} />
           <Row
-            name={`域名注册商`}
+            name={`商家`}
             value={result.registrar}
             hidden={!result.registrar || result.registrar === "Unknown"}
           />
           <Row
-            name={`注册商网址`}
+            name={`网址`}
             value={result.registrarURL}
             likeLink
             hidden={!result.registrarURL || result.registrarURL === "Unknown"}
@@ -255,7 +255,7 @@ function ResultTable({ result, target }: ResultTableProps) {
           {/* IP Whois Only End */}
 
           <Row
-            name={`域信息来自`}
+            name={`WHOIS`}
             value={result.whoisServer}
             likeLink
             hidden={!result.whoisServer || result.whoisServer === "Unknown"}
@@ -285,7 +285,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`持有人公司`}
+            name={`公司`}
             value={result.registrantOrganization}
             hidden={
               !result.registrantOrganization ||
@@ -293,7 +293,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`持有人地址`}
+            name={`地址`}
             value={result.registrantProvince}
             hidden={
               !result.registrantProvince ||
@@ -301,7 +301,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`持有人国籍`}
+            name={`国家`}
             value={result.registrantCountry}
             hidden={
               !result.registrantCountry ||
@@ -309,7 +309,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`注册人手机`}
+            name={`联系电话`}
             value={result.registrantPhone}
             hidden={
               !result.registrantPhone || result.registrantPhone === "Unknown"
@@ -318,7 +318,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             <InfoText content={`Abuse`} />
           </Row>
           <Row
-            name={`注册人邮箱`}
+            name={`联系邮箱`}
             value={result.registrantEmail}
             hidden={
               !result.registrantEmail || result.registrantEmail === "Unknown"
@@ -456,7 +456,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
                   {!isCapture && (
                     <RichTextarea
                       className={`mt-2`}
-                      name={`Raw Whois Response`}
+                      name={`域名：原始whois数据`}
                       value={result?.rawWhoisContent}
                       saveFileName={`${target.replace(/\./g, "-")}-whois.txt`}
                     />
@@ -504,10 +504,10 @@ export default function Lookup({ data, target }: Props) {
             <Search
               className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`}
             />
-            Whois Lookup
+            域名信息查询
           </h1>
           <p className={"text-md text-center text-secondary"}>
-            Please enter a domain name to lookup
+            请在下方输入要查找的域名
           </p>
           <div className={"relative flex flex-row items-center w-full mt-2"}>
             <Input
