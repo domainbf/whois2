@@ -190,12 +190,12 @@ function ResultTable({ result, target }: ResultTableProps) {
           <Row name={`Name`} value={result.domain || target.toUpperCase()} />
           <Row name={`Status`} value={<StatusComp />} />
           <Row
-            name={`Registrar`}
+            name={`注册商`}
             value={result.registrar}
             hidden={!result.registrar || result.registrar === "Unknown"}
           />
           <Row
-            name={`Registrar URL`}
+            name={`注册网址`}
             value={result.registrarURL}
             likeLink
             hidden={!result.registrarURL || result.registrarURL === "Unknown"}
@@ -262,21 +262,21 @@ function ResultTable({ result, target }: ResultTableProps) {
           />
 
           <Row
-            name={`Creation Date`}
+            name={`注册日期`}
             value={toReadableISODate(result.creationDate)}
             hidden={!result.creationDate || result.creationDate === "Unknown"}
           >
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`Updated Date`}
+            name={`更新日期`}
             value={toReadableISODate(result.updatedDate)}
             hidden={!result.updatedDate || result.updatedDate === "Unknown"}
           >
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`Expiration Date`}
+            name={`到期日期`}
             value={toReadableISODate(result.expirationDate)}
             hidden={
               !result.expirationDate || result.expirationDate === "Unknown"
@@ -285,7 +285,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             <InfoText content={`UTC`} />
           </Row>
           <Row
-            name={`Registrant Organization`}
+            name={`持有人公司`}
             value={result.registrantOrganization}
             hidden={
               !result.registrantOrganization ||
@@ -293,7 +293,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`Registrant Province`}
+            name={`持有人地址`}
             value={result.registrantProvince}
             hidden={
               !result.registrantProvince ||
@@ -301,7 +301,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`Registrant Country`}
+            name={`持有人国籍`}
             value={result.registrantCountry}
             hidden={
               !result.registrantCountry ||
@@ -309,7 +309,7 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           />
           <Row
-            name={`Registrant Phone`}
+            name={`注册人手机`}
             value={result.registrantPhone}
             hidden={
               !result.registrantPhone || result.registrantPhone === "Unknown"
