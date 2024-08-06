@@ -379,7 +379,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
             <CardTitle
               className={`flex flex-row items-center text-lg md:text-xl`}
             >
-              Result
+              查询结果如下
               {!isCapture && (
                 <Drawer>
                   <DrawerTrigger asChild>
