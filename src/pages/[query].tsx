@@ -394,7 +394,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
                   </DrawerTrigger>
                   <DrawerContent>
                     <DrawerHeader>
-                      <DrawerTitle>Result Capture</DrawerTitle>
+                      <DrawerTitle>域名卡片</DrawerTitle>
                       <DrawerClose />
                     </DrawerHeader>
                     <div className={`my-2`}>
@@ -413,7 +413,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
                         tapEnabled
                       >
                         <Camera className={`w-4 h-4 mr-2`} />
-                        Capture
+                        点击保存
                       </Button>
                     </DrawerFooter>
                   </DrawerContent>
