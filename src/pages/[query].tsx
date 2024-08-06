@@ -184,7 +184,7 @@ function ResultTable({ result, target }: ResultTableProps) {
   const copy = useClipboard();
 
   return (
-    查询结果如下 && (
+    result && (
       <table className={`w-full text-sm mb-4 whitespace-pre-wrap`}>
         <tbody>
           <Row name={`域名:`} value={result.domain || target.toUpperCase()} />
