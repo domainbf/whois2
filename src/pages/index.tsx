@@ -39,7 +39,7 @@ export default function Home() {
           }
         >
           <Search className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`} />
-           Whois Lookup
+           WHOIS.LS
         </h1>
         <div
           className={"flex flex-row items-center flex-wrap justify-center mt-1"}
@@ -88,7 +88,7 @@ export default function Home() {
         <div className={"relative flex flex-row items-center w-full mt-2"}>
           <Input
             className={`w-full text-center transition-all duration-300 hover:shadow`}
-            placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
+            placeholder={`domain name (e.g. whois.ls, 8.8.8.8)`}
             value={domain}
             onChange={(e) => setDomain(e.target.value)}
             onKeyDown={(e) => {
