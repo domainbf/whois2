@@ -7,7 +7,7 @@ import { analyzeWhois } from "@/lib/whois/common_parser";
 export function parseWhoisData(rawData: string, domain: string) {
   // preflight check
   if (!rawData) {
-    throw new Error("No Whois data received");
+    throw new Error("未收到 Whois 数据");
   } else if (rawData.length <= 10) {
     throw new Error(`收到错误的 Whois 数据: ${rawData}`);
   }
