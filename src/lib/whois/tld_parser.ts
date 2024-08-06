@@ -18,26 +18,26 @@ export function parseWhoisData(rawData: string, domain: string) {
   const rawContent = rawData.toLowerCase();
   if (
     rawContent.match(filterRegex.notFound) ||
-    rawContent.includes("没有匹配") ||
-    rawContent.includes("此查询返回 0 个对象") ||
-    rawContent.includes("未找到") ||
-    rawContent.includes("什么都没找到") ||
-    rawContent.includes("没有找到数据")
+    rawContent.includes("no match") ||
+    rawContent.includes("this query returned 0 objects") ||
+    rawContent.includes("not found") ||
+    rawContent.includes("no entries found") ||
+    rawContent.includes("no data found")
   ) {
-    throw new Error("暂不支持此域名后缀");
+    throw new Error("未找到域TLD服务器");
   }
 
   if (
-    rawContent.includes("无效查询") ||
-    rawContent.includes("无效的请求") ||
-    rawContent.includes("域名无效") ||
-    rawContent.includes("输入无效") ||
-    rawContent.includes("无效对象") ||
-    rawContent.includes("无效的语法") ||
-    rawContent.includes("无效字符") ||
-    rawContent.includes("无效数据") ||
-    rawContent.includes("格式错误的查询") ||
-    rawContent.includes("请求格式错误")
+    rawContent.includes("invalid query") ||
+    rawContent.includes("invalid request") ||
+    rawContent.includes("invalid domain name") ||
+    rawContent.includes("invalid input") ||
+    rawContent.includes("invalid object") ||
+    rawContent.includes("invalid syntax") ||
+    rawContent.includes("invalid character") ||
+    rawContent.includes("invalid data") ||
+    rawContent.includes("malformed query") ||
+    rawContent.includes("malformed request")
   ) {
     throw new Error("请输入正确内容！");
   }
@@ -46,7 +46,7 @@ export function parseWhoisData(rawData: string, domain: string) {
   if (
     filterRegex.rateLimited &&
     (rawData.match(filterRegex.rateLimited) ||
-      rawContent.includes("慢一点，慢一点，太快了……") ||
+      rawContent.includes("rate limit") ||
       rawContent.includes("server too busy"))
   ) {
     throw new Error("慢一点，太快了受不了。");
