@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -20,7 +21,29 @@ const siteKeywords = strEnv(
   "Whois, Lookup, Tool, whois"
 );
 
+const announcements = [
+  "我们不存储您的搜索记录",
+  "如有问题请邮箱联系：a@f.af",
+  "我们提供域名注册和过期域名抢注服务",
+];
+
 export default function App({ Component, pageProps }: AppProps) {
+  const [announcementIndex, setAnnouncementIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAnnouncementIndex((prevIndex) =>
+        prevIndex === announcements.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  const currentAnnouncement = announcements[announcementIndex];
+
   return (
     <>
       <Head>
@@ -44,11 +67,7 @@ export default function App({ Component, pageProps }: AppProps) {
             )}
           >
             <img src="/w.PNG" alt="Logo" className="w-8 h-8" />
-            <input
-              type="text"
-              placeholder="Enter your text here"
-              className="w-full px-4 py-2 rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <div className="text-sm">{currentAnnouncement}</div>
           </div>
           <div
             className={cn(
