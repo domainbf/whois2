@@ -12,6 +12,7 @@ import {
   Undo2,
 } from "lucide-react";
 import React, { useEffect } from "react";
+import Head from "next/head"; // 添加这一行
 import Link from "next/link";
 import { cn, isEnter, toSearchURI } from "@/lib/utils";
 import { addHistory, listHistory, removeHistory } from "@/lib/history";
@@ -32,7 +33,6 @@ export default function Home() {
 
   return (
     <>
-      {/* 添加meta标签 */}
       <Head>
         <meta
           name="viewport"
