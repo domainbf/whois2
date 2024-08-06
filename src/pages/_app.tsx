@@ -43,17 +43,23 @@ export default function App({ Component, pageProps }: AppProps) {
             )}
           >
             <ThemeToggle />
-            <Link href="https://www.atomao.com" target="_blank">
-              <Button variant="outline" size="icon" tapEnabled>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                  <path d="M352 256c0 22.2-1.2 43.6-3.3 64h-185.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.3c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64h-123.1c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32h-116.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0h-176.6c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 .5-51.5 11.2-10.6 20.5-13.8 27.8-13.8s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0h-116.7c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.7zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.6-20.5 13.8-27.8 13.8s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5z"/>
-                </svg>
-              </Button>
-            </Link>
+            <Link
+  href={`https://www.atomao.com`}
+  target={`_blank`}
+>
+  <Button variant={`outline`} size={`icon`} tapEnabled>
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`w-5 h-5 fill-primary`}
+    >
+      <title>Domain</title>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z" />
+    </svg>
+  </Button>
+</Link>
+
           </div>
           <Component {...pageProps} />
         </div>
