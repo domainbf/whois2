@@ -1,3 +1,4 @@
+```javascript
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -97,6 +98,7 @@ export default function Home() {
                 window.location.href = toSearchURI(domain);
               }
             }}
+            style={{ touchAction: 'manipulation' }} // 禁止页面缩放
           />
           <Link
             href={toSearchURI(domain)}
@@ -133,7 +135,7 @@ export default function Home() {
               className={`mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-fit`}
             >
               {history.map((item, index) => (
-                <Clickable tapScale={0.985}>
+                <Clickable tapScale={0.985} key={index}>
                   <Link
                     className={cn(
                       `text-sm w-full h-full`,
@@ -141,13 +143,8 @@ export default function Home() {
                       `border rounded-md pl-3.5 pr-2.5 py-2 text-secondary`,
                       `group transition duration-500 ease-in-out`,
                       `hover:bg-background hover:text-primary hover:border-hover`,
-
-                      // // if the last element is the only one, then it takes two cells
-                      // (index === history.length - 1 && history.length % 2 === 1)
-                      //   && "md:col-span-2 md:w-1/2 md:mx-auto",
                     )}
                     href={toSearchURI(item)}
-                    key={index}
                     onClick={(e) => {
                       if (trashMode) {
                         e.preventDefault();
@@ -196,3 +193,4 @@ export default function Home() {
     </main>
   );
 }
+```
