@@ -132,7 +132,7 @@ function ResultTable({ result, target }: ResultTableProps) {
 
   const StatusComp = () => {
     if (!result || result.status.length === 0) {
-      return "N/A";
+      return "未获取到结果";
     }
 
     const status = useMemo(() => {
@@ -187,21 +187,21 @@ function ResultTable({ result, target }: ResultTableProps) {
     result && (
       <table className={`w-full text-sm mb-4 whitespace-pre-wrap`}>
         <tbody>
-          <Row name={`Name`} value={result.domain || target.toUpperCase()} />
-          <Row name={`Status`} value={<StatusComp />} />
+          <Row name={`域名`} value={result.domain || target.toUpperCase()} />
+          <Row name={`状态`} value={<StatusComp />} />
           <Row
-            name={`注册商`}
+            name={`域名注册商`}
             value={result.registrar}
             hidden={!result.registrar || result.registrar === "Unknown"}
           />
           <Row
-            name={`注册网址`}
+            name={`注册商网址`}
             value={result.registrarURL}
             likeLink
             hidden={!result.registrarURL || result.registrarURL === "Unknown"}
           />
           <Row
-            name={`IANA ID`}
+            name={`注册商 ID`}
             value={result.ianaId}
             hidden={!result.ianaId || result.ianaId === "N/A"}
           >
@@ -255,7 +255,7 @@ function ResultTable({ result, target }: ResultTableProps) {
           {/* IP Whois Only End */}
 
           <Row
-            name={`Whois Server`}
+            name={`域信息来自`}
             value={result.whoisServer}
             likeLink
             hidden={!result.whoisServer || result.whoisServer === "Unknown"}
@@ -318,14 +318,14 @@ function ResultTable({ result, target }: ResultTableProps) {
             <InfoText content={`Abuse`} />
           </Row>
           <Row
-            name={`Registrant Email`}
+            name={`注册人邮箱`}
             value={result.registrantEmail}
             hidden={
               !result.registrantEmail || result.registrantEmail === "Unknown"
             }
           />
           <Row
-            name={`Name Servers`}
+            name={`域名 DNS`}
             value={
               <div className={`flex flex-col`}>
                 {result.nameServers.map((ns, index) => (
