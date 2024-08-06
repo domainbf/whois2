@@ -37,11 +37,19 @@ export default function App({ Component, pageProps }: AppProps) {
         disableTransitionOnChange
       >
         <div className={cn(`relative w-full h-full`, inter.className)}>
-          <img
-            src="/w.PNG"
-            alt="Logo"
-            className="absolute top-4 left-4"
-          />
+          <div
+            className={cn(
+              `flex flex-row items-center space-x-4`,
+              `absolute top-4 left-4 z-50`
+            )}
+          >
+            <img src="/w.PNG" alt="Logo" className="w-8 h-8" />
+            <input
+              type="text"
+              placeholder="Enter your text here"
+              className="w-full px-4 py-2 rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
           <div
             className={cn(
               `absolute top-4 right-4 flex flex-row items-center z-50 space-x-2`
