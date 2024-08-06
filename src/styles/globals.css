@@ -104,6 +104,12 @@
 
     --shadow: #ffffff05 !important;
   }
+
+  /* 防止输入框缩放 */
+  input, textarea {
+    font-size: 16px; /* 确保输入框字体大小为 16px 或更大 */
+    touch-action: manipulation; /* 防止触摸缩放 */
+  }
 }
 
 @layer base {
@@ -140,5 +146,4 @@ textarea::-webkit-scrollbar {
 }
 
 .no-capture {
-
 }
