@@ -22,9 +22,11 @@ const siteKeywords = strEnv(
 );
 
 const announcements = [
-  "我们不存储您的搜索记录",
+  "我们不存储个记录您的所有查询内容",
   "如有问题请邮箱联系：a@f.af",
   "我们提供域名注册和过期域名抢注服务",
+  "域名注册及延期交付订单：NIC.BN",
+  "立即可购买的域名列表：domain.bf",
 ];
 
 export default function App({ Component, pageProps }: AppProps) {
