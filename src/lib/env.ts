@@ -1,4 +1,5 @@
-export const VERSION = "5.2.0";
+export const VERSION = "不讲李"; // 版本号没有前缀
+
 
 export const HISTORY_LIMIT: number = intEnv("NEXT_PUBLIC_HISTORY_LIMIT", 6);
 // The maximum number of history items to keep in the local storage
