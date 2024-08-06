@@ -355,6 +355,9 @@ function ResultTable({ result, target }: ResultTableProps) {
   );
 }
 
+// src/pages/[query].tsx
+// ... existing code ...
+
 const ResultComp = React.forwardRef<HTMLDivElement, Props>(
   ({ data, target, isCapture }: Props, ref) => {
     const copy = useClipboard();
@@ -382,7 +385,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
             >
               结果如下
               {/* 在这里插入 DomainTable 组件 */}
-              <DomainTable data={data} />
+              <DomainTable domain={data.domain} order={data.order} />
               {!isCapture && (
                 <Drawer>
                   // ... 省略其他代码 ...
@@ -440,6 +443,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
   },
 );
 
+// ... existing code ...
 
 export default function Lookup({ data, target }: Props) {
   const [inputDomain, setInputDomain] = React.useState<string>(target);
