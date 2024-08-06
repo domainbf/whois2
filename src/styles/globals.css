@@ -109,6 +109,7 @@
   input, textarea {
     font-size: 16px; /* 确保输入框字体大小为 16px 或更大 */
     touch-action: manipulation; /* 防止触摸缩放 */
+    user-select: none; /* 禁止用户选择文本 */
   }
 }
 
