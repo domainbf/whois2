@@ -1,43 +1,49 @@
-function getDomainInfo($domain, $order) {
-    $url = "https://www.nazhumi.com/api/v1?domain=$domain&order=$order";
-    // Make a GET request to the API
-    $response = file_get_contents($url);
-    // Parse the JSON response
-    $data = json_decode($response, true);
-    return $data;
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function getDomainInfo(domain, order) {
+    const url = `https://www.nazhumi.com/api/v1?domain=${domain}&order=${order}`;
+    return axios.get(url).then(response => response.data);
 }
 
-function getHtmlInfo($domain, $order) {
-    $domainInfo = getDomainInfo($domain, $order);
-    $code = $domainInfo['code'];
-    $data = $domainInfo['data'];
+function DomainTable({ domain, order }) {
+    const [html, setHtml] = useState('');
+    const [showMore, setShowMore] = useState(false);
 
-    // Generate HTML output
-    $html = "<style>.domain-table { width: 100%; } .domain-table th, .domain-table td { padding: 8px; text-align: left; }</style>";
-    $html .= "<table class='domain-table'>";
-    $html .= "<thead><tr><td>Registrar</td><td>注册</td><td>续费</td><td>转入</td></tr></thead>";
-    $html .= "<tbody>";
+    useEffect(() => {
+        getDomainInfo(domain, order).then(data => {
+            const { code, data: domainData } = data;
+            let htmlContent = `
+                <style>.domain-table { width: 100%; } .domain-table th, .domain-table td { padding: 8px; text-align: left; }</style>
+                <table class='domain-table'>
+                    <thead><tr><td>Registrar</td><td>注册</td><td>续费</td><td>转入</td></tr></thead>
+                    <tbody>
+            `;
 
-    $rowCount = 0;
-    foreach ($data['price'] as $price) {
-        if ($rowCount == 2) break; // Limit to first 2 rows initially
-        $html .= "<tr><td><a href='{$price['registrarweb']}'>{$price['registrarname']}</a></td><td>{$price['new']} {$price['currencytype']}</td><td>{$price['renew']} {$price['currencytype']}</td><td>{$price['transfer']} {$price['currencytype']}</td></tr>";
-        $rowCount++;
-    }
+            const prices = domainData.price.slice(0, 2);
+            prices.forEach(price => {
+                htmlContent += `<tr><td><a href='${price.registrarweb}'>${price.registrarname}</a></td><td>${price.new} ${price.currencytype}</td><td>${price.renew} ${price.currencytype}</td><td>${price.transfer} ${price.currencytype}</td></tr>`;
+            });
 
-    $html .= "</tbody></table>";
+            htmlContent += `</tbody></table>`;
 
-    // Add "Show More" option for remaining rows if there are more than 2
-    if (count($data['price']) > 2) {
-        $html .= "<div id='remainingRows' style='display: none;'><table class='domain-table'><tbody>";
-        for ($i = 2; $i < count($data['price']); $i++) {
-            $price = $data['price'][$i];
-            $html .= "<tr><td><a href='{$price['registrarweb']}'>{$price['registrarname']}</a></td><td>{$price['new']} {$price['currencytype']}</td><td>{$price['renew']} {$price['currencytype']}</td><td>{$price['transfer']} {$price['currencytype']}</td></tr>";
-        }
-        $html .= "</tbody></table></div>";
-        $html .= "<button onclick='toggleRows()'>展开</button>";
-        $html .= "<script>function toggleRows() { var remainingRows = document.getElementById('remainingRows'); if (remainingRows.style.display === 'none') { remainingRows.style.display = 'block'; this.innerHTML = '收起'; } else { remainingRows.style.display = 'none'; this.innerHTML = '展开'; } }</script>";
-    }
+            if (domainData.price.length > 2) {
+                htmlContent += `<button onClick={() => setShowMore(!showMore)}>${showMore ? '收起' : '展开'}</button>`;
+                if (showMore) {
+                    htmlContent += `<table class='domain-table'><tbody>`;
+                    domainData.price.slice(2).forEach(price => {
+                        htmlContent += `<tr><td><a href='${price.registrarweb}'>${price.registrarname}</a></td><td>${price.new} ${price.currencytype}</td><td>${price.renew} ${price.currencytype}</td><td>${price.transfer} ${price.currencytype}</td></tr>`;
+                    });
+                    htmlContent += `</tbody></table>`;
+                }
+            }
 
-    return $html;
+            setHtml(htmlContent);
+        });
+    }, [domain, order, showMore]);
+
+    return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
+
+export default DomainTable;
+
