@@ -1,23 +1,25 @@
-import * as React from "react";
+// src/components/CardWithQRCode.tsx
+import React from "react";
 import { cn } from "@/lib/utils";
-import { Card as OriginalCard, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "./ui/card";
 
 interface CardWithQRCodeProps extends React.HTMLAttributes<HTMLDivElement> {
   qrCodeUrl: string;
 }
 
 const CardWithQRCode = React.forwardRef<HTMLDivElement, CardWithQRCodeProps>(
-  ({ className, qrCodeUrl, ...props }, ref) => {
-    const qrCodeSrc = `https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=${encodeURIComponent(qrCodeUrl)}`;
+  ({ qrCodeUrl, className, ...props }, ref) => {
+    const qrCodeImgUrl = `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${encodeURIComponent(
+      qrCodeUrl
+    )}&choe=UTF-8`;
 
     return (
-      <OriginalCard ref={ref} className={cn("relative", className)} {...props}>
-        <img src={qrCodeSrc} alt="QR Code" className="absolute bottom-4 right-4 w-16 h-16" />
-        {props.children}
-      </OriginalCard>
+      <div ref={ref} className={cn("relative", className)} {...props}>
+        <img src={qrCodeImgUrl} alt="QR Code" />
+      </div>
     );
   }
 );
+
 CardWithQRCode.displayName = "CardWithQRCode";
 
-export { CardWithQRCode, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
+export { CardWithQRCode };
