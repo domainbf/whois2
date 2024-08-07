@@ -1,15 +1,17 @@
 import * as React from "react";
+
 import { cn } from "@/lib/utils";
-import { CardWithQRCode } from "../CardWithQRCode"; // 确保路径正确
 
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  // 移除 ref 传递，如果 CardWithQRCode 不支持 ref
-  <CardWithQRCode
-    qrCodeUrl={typeof window !== "undefined" ? window.location.href : ''}
-    className={className}
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className,
+    )}
     {...props}
   />
 ));
