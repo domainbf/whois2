@@ -6,7 +6,7 @@ const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <CardWithQRCode ref={ref} qrCodeUrl={window.location.href} className={className} {...props} />
+  <CardWithQRCode ref={ref} qrCodeUrl={typeof window !== "undefined" ? window.location.href : ''} className={className} {...props} />
 ));
 Card.displayName = "Card";
 
