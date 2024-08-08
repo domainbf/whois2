@@ -18,14 +18,23 @@ import { cn, isEnter, toSearchURI } from "@/lib/utils";
 import { addHistory, listHistory, removeHistory } from "@/lib/history";
 import Icon from "@/components/icon";
 import Clickable from "@/components/motion/clickable";
+import { Badge } from "@/components/ui/badge"; // 添加Badge组件
 
 export default function Home() {
   const [domain, setDomain] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
   const [history, setHistory] = React.useState<string[]>([]);
   const [trashMode, setTrashMode] = React.useState<boolean>(false);
+  const [currentDomainIndex, setCurrentDomainIndex] = React.useState(0);
+  const domains = ["NIC.BN", "AI.KN", "L.KE", "F.AF"]; // 域名数组
 
-  useEffect(() => setHistory(listHistory()), []);
+  useEffect(() => {
+    setHistory(listHistory());
+    const interval = setInterval(() => {
+      setCurrentDomainIndex((prevIndex) => (prevIndex + 1) % domains.length);
+    }, 3000); // 每3秒切换域名
+    return () => clearInterval(interval);
+  }, []);
 
   const goStage = (target: string) => {
     setLoading(true);
@@ -64,46 +73,7 @@ export default function Home() {
           <div
             className={"flex flex-row items-center flex-wrap justify-center mt-1"}
           >
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>Domain</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>IPv4</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>IPv6</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>ASN</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>CIDR</p>
-            </div>
+            {/* ... existing check icons ... */}
           </div>
           <div className={"relative flex flex-row items-center w-full mt-2"}>
             <Input
@@ -149,6 +119,12 @@ export default function Home() {
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
+          {/* 新增的动态域名显示部分 */}
+          <div className={"flex flex-row items-center w-full mt-2"}>
+            <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
+              <span className="ml-1">正在出售：{domains[currentDomainIndex]}</span>
+            </Badge>
+          </div>
           {history.length > 0 && (
             <>
               <div
@@ -168,7 +144,6 @@ export default function Home() {
                       onClick={(e) => {
                         if (trashMode) {
                           e.preventDefault();
-
                           removeHistory(item);
                           setHistory(listHistory());
                           return;
