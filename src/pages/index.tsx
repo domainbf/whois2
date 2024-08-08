@@ -6,7 +6,12 @@ export default function Home() {
   const [history, setHistory] = React.useState<string[]>([]);
   const [trashMode, setTrashMode] = React.useState<boolean>(false);
   const [currentDomainIndex, setCurrentDomainIndex] = React.useState(0);
-  const domains = ["NIC.BN", "AI.KN", "L.KE", "F.AF", "TOP.VG", "GAME.KG", "DOMAIN.BF", "CXL.NET", "WHOIS.LS", "HELLO.UY", "DEV.UG",]; 
+  const domains = [
+    "NIC.BN", "AI.KN", "L.KE", "F.AF", 
+    "TOP.VG", "GAME.KG", "DOMAIN.BF", 
+    "CXL.NET", "WHOIS.LS", "HELLO.UY", 
+    "DEV.UG"
+  ]; 
 
   useEffect(() => {
     setHistory(listHistory());
@@ -169,4 +174,3 @@ export default function Home() {
     </>
   );
 }
-
