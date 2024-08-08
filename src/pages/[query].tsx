@@ -471,17 +471,6 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
   },
 );
 
-import React, { useEffect } from "react";
-import { Input, Button, ScrollArea, Badge } from "@/components/ui";
-import { Search, Loader2, Send, CornerDownRight } from "@/components/icons";
-import { isEnter, toSearchURI, addHistory } from "@/lib/utils";
-import Link from "next/link";
-
-interface Props {
-  data: any;
-  target: string;
-}
-
 export default function Lookup({ data, target }: Props) {
   const [inputDomain, setInputDomain] = React.useState<string>(target);
   const [loading, setLoading] = React.useState<boolean>(false);
