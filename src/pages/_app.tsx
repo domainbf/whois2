@@ -28,7 +28,7 @@ const siteKeywords = strEnv(
 );
 
 // 使用本地图片
-const siteImage = "/whois.ls.png"; // 相对路径指向 public 文件夹中的图片
+const siteImage = "/gg.gif"; // 相对路径指向 public 文件夹中的图片
 
 interface Announcement {
   text: string;
