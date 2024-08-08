@@ -8,25 +8,39 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-switch";
-import { strEnv } from "@/lib/env";
-import { inter } from "@/lib/global";
+import { Inter } from 'next/font/google'; // 导入 Inter 字体
 
-const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "Whois");
+const inter = Inter({ subsets: ['latin'] }); // 定义 inter 变量
+
+// 定义 strEnv 函数
+function strEnv(variableName: string, defaultValue: string): string {
+  return process.env[variableName] || defaultValue;
+}
+
+const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "Whois.ls");
 const siteDescription = strEnv(
   "NEXT_PUBLIC_SITE_DESCRIPTION",
-  "Whois Lookup Tool, Support Domain/IPv4/IPv6/ASN/CIDR Whois Lookup, Provided Beautiful, Clean and Simple UI."
-);
-const siteKeywords = strEnv(
+  "Whois 查询工具，支持域名/IPv4/IPv6/ASN/CIDR Whois 查询，帮助你获取域名的状态和持有人信息。"
+);const siteKeywords = strEnv(
   "NEXT_PUBLIC_SITE_KEYWORDS",
-  "Whois, Lookup, Tool, whois"
+  "whois.ls, 域名Whois查询, DNS查询, ip查询, 域名持有人查询, Lookup, Tool, 域名状态"
 );
 
-const announcements = [
-  "我们不存储个记录您的所有查询内容",
-  "如有问题请邮箱联系：a@f.af",
-  "我们提供域名注册和过期域名抢注服务",
-  "域名注册及延期交付订单：NIC.BN",
-  "立即可购买的域名列表：domain.bf",
+// 使用本地图片
+const siteImage = "/whois.ls.png"; // 相对路径指向 public 文件夹中的图片
+
+interface Announcement {
+  text: string;
+  link?: string;
+}
+
+const announcements: Announcement[] = [
+  { text: "我们不存储不记录查询记录" },
+  { text: "问题及反馈可发至：a@f.af" },
+  { text: "我们不存储不记录所有查询内容" },
+  { text: "提供域名注册和过期域名抢注服务" },
+  { text: "域名注册、定制、延期交付：NIC.BN", link: "https://nic.bn" },
+  { text: "立即可购买的域名列表：DOMAIN.BF", link: "https://domain.bf" },
 ];
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -37,7 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
       setAnnouncementIndex((prevIndex) =>
         prevIndex === announcements.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000);
+    }, 5000); 
 
     return () => {
       clearInterval(timer);
@@ -53,6 +67,19 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="description" content={siteDescription} />
         <meta name="keywords" content={siteKeywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {/* Open Graph meta tags */}
+        <meta property="og:title" content={siteTitle} />
+        <meta property="og:description" content={siteDescription} />
+        <meta property="og:image" content={siteImage} />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card meta tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={siteTitle} />
+        <meta name="twitter:description" content={siteDescription} />
+        <meta name="twitter:image" content={siteImage} />
       </Head>
       <Toaster />
       <ThemeProvider
@@ -61,15 +88,28 @@ export default function App({ Component, pageProps }: AppProps) {
         enableSystem
         disableTransitionOnChange
       >
-        <div className={cn(`relative w-full h-full`, inter.className)}>
+        <div className={cn(`relative w-full h-full`, inter.className)}> {/* 使用 inter.className */}
           <div
             className={cn(
               `flex flex-row items-center space-x-4`,
-              `absolute top-4 left-4 z-50`
+              `absolute top-4 left-4 z-50` // 使用 absolute 使其在页面顶部固定
             )}
           >
-            <img src="/gg.gif" alt="Logo" className="w-8 h-8" />
-            <div className="text-sm">{currentAnnouncement}</div>
+            <img src={siteImage} alt="Logo" className="w-8 h-8" />
+            <div className="text-sm">
+              {currentAnnouncement.link ? (
+                <a
+                  href={currentAnnouncement.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  {currentAnnouncement.text}
+                </a>
+              ) : (
+                currentAnnouncement.text
+              )}
+            </div>
           </div>
           <div
             className={cn(
@@ -77,17 +117,82 @@ export default function App({ Component, pageProps }: AppProps) {
             )}
           >
             <ThemeToggle />
-            <Link href={`https://www.domain.bf`} target={`_blank`}>
+            <Link href={`https://domain.bf`} passHref>
               <Button variant={`outline`} size={`icon`} tapEnabled>
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="http://www.w3.org/2000/svg" // Added namespace
+                  className={`w-5 h-5 fill-primary`}
+                >
+                  <title>Earth</title>
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.
+<>
+      <Head>
+        <title>{siteTitle}</title>
+        <meta name="description" content={siteDescription} />
+        <meta name="keywords" content={siteKeywords} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {/* Open Graph meta tags */}
+        <meta property="og:title" content={siteTitle} />
+        <meta property="og:description" content={siteDescription} />
+        <meta property="og:image" content={siteImage} />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card meta tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={siteTitle} />
+        <meta name="twitter:description" content={siteDescription} />
+        <meta name="twitter:image" content={siteImage} />
+      </Head>
+      <Toaster />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <div className={cn(`relative w-full h-full`, inter.className)}> {/* 使用 inter.className */}
+          <div
+            className={cn(
+              `flex flex-row items-center space-x-4`,
+              `absolute top-4 left-4 z-50` // 使用 absolute 使其在页面顶部固定
+            )}
+          >
+            <img src={siteImage} alt="Logo" className="w-8 h-8" />
+            <div className="text-sm">
+              {currentAnnouncement.link ? (
+                <a
+                  href={currentAnnouncement.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  {currentAnnouncement.text}
+                </a>
+              ) : (
+                currentAnnouncement.text
+              )}
+            </div>
+          </div>
+          <div
+            className={cn(
+              `absolute top-4 right-4 flex flex-row items-center z-50 space-x-2`
+            )}
+          >
+            <ThemeToggle />
+            <Link href={`https://domain.bf`} passHref>
+              <Button variant={`outline`} size={`icon`} tapEnabled>
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg" // Added namespace
                   className={`w-5 h-5 fill-primary`}
                 >
                   <title>Earth</title>
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z" />
-                  <path d="M12 4c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 10c-2.67 0-5-2.33-5-5s2.33-5 5-5 5 2.33 5 5-2.33 5-5 5z" />
                 </svg>
               </Button>
             </Link>
