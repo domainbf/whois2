@@ -28,8 +28,8 @@ const siteKeywords = strEnv(
 );
 
 // 使用本地图片
-const siteImage = "/gg.gif"; // 仍然用作网站左上角的 logo
-const ogImage = "/whois.ls.png"; // 用于 Open Graph 和 Twitter Card 的图片
+const siteImage = "/whoislogo.jpeg"; // 用作网站左上角的 logo 和社交媒体缩略图
+const ogImage = "/whoislogo.jpeg"; // 用于 Open Graph 和 Twitter Card 的图片
 
 interface Announcement {
   text: string;
@@ -70,18 +70,23 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="keywords" content={siteKeywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {/* Open Graph meta tags */}
+        {/* Open Graph meta tags for social media preview */}
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteDescription} />
-        <meta property="og:image" content={https://wubaohu.com/wp-content/uploads/2024/08/whois.ls_.png} />
+        <meta property="og:image" content={ogImage} />
         <meta property="og:url" content="https://whois.ls" />
-        <meta property="og:type" content="whois.ls" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={siteTitle} />
 
-        {/* Twitter Card meta tags */}
+        {/* Twitter Card meta tags for Twitter preview */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={siteTitle} />
         <meta name="twitter:description" content={siteDescription} />
-        <meta name="twitter:image" content={https://wubaohu.com/wp-content/uploads/2024/08/whois.ls_.png} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:site" content="@yourTwitterHandle" />
+
+        {/* Additional Meta Tags for Search Engines */}
+        <link rel="image_src" href={ogImage} />
       </Head>
       <Toaster />
       <ThemeProvider
@@ -124,7 +129,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
-                  xmlns="" // 修复了命名空间问题
+                  xmlns="http://www.w3.org/2000/svg" // 修复了命名空间问题
                   className={`w-5 h-5 fill-primary`}
                 >
                   <title>Earth</title>
