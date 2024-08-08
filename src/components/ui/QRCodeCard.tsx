@@ -18,7 +18,11 @@ const QRCode: React.FC<QRCodeProps> = ({ value }) => {
 };
 
 // QRCodeCard 组件
-const QRCodeCard: React.FC<{ className?: string }> = ({ className }) => {
+interface QRCodeCardProps {
+  className?: string; // className 属性为可选字符串
+}
+
+const QRCodeCard: React.FC<QRCodeCardProps> = ({ className }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : ''; // 获取当前页面的 URL
 
   return (
