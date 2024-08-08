@@ -2,7 +2,12 @@
 import * as React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"; // 导入卡片组件
 
-const QRCode = ({ value }) => {
+// 定义 QRCodeProps 接口以指定类型
+interface QRCodeProps {
+  value: string; // value 属性的类型为 string
+}
+
+const QRCode: React.FC<QRCodeProps> = ({ value }) => {
   // 使用 CDN 生成二维码
   return (
     <img
@@ -12,8 +17,8 @@ const QRCode = ({ value }) => {
   );
 };
 
-// QRCodeCard Component
-const QRCodeCard = ({ className }) => {
+// QRCodeCard 组件
+const QRCodeCard: React.FC<{ className?: string }> = ({ className }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : ''; // 获取当前页面的 URL
 
   return (
