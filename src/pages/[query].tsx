@@ -471,6 +471,17 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
   },
 );
 
+import React, { useEffect } from "react";
+import { Input, Button, ScrollArea, cn, Badge } from "@/components/ui";
+import { Search, Loader2, Send, CornerDownRight } from "@/components/icons";
+import { isEnter, toSearchURI, addHistory } from "@/lib/utils";
+import Link from "next/link";
+
+interface Props {
+  data: any;
+  target: string;
+}
+
 export default function Lookup({ data, target }: Props) {
   const [inputDomain, setInputDomain] = React.useState<string>(target);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -482,7 +493,7 @@ export default function Lookup({ data, target }: Props) {
 
   useEffect(() => {
     addHistory(target);
-  }, []);
+  }, [target]);
 
   return (
     <ScrollArea className={`w-full h-full`}>
@@ -511,7 +522,7 @@ export default function Lookup({ data, target }: Props) {
           </p>
           <div className={"relative flex flex-row items-center w-full mt-2"}>
             <Input
-              className={`w-full text-center transition-all duration-300 hover:shadow`}
+              className={`w-full text-left transition-all duration-300 hover:shadow`}
               placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
               value={inputDomain}
               onChange={(e) => setInputDomain(e.target.value)}
@@ -519,6 +530,10 @@ export default function Lookup({ data, target }: Props) {
                 if (isEnter(e)) {
                   goStage(inputDomain);
                 }
+              }}
+              style={{
+                maxWidth: "calc(100% - 50px)", // 限制输入框宽度，确保按钮不被遮挡
+                paddingRight: "50px", // 为按钮预留空间
               }}
             />
             <Button
