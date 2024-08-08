@@ -39,6 +39,11 @@ const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, lo
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
+        <meta property="og:title" content="WHOIS.LS - 查询域名和IP信息" />
+        <meta property="og:description" content="使用 WHOIS.LS 查询域名、IPv4、IPv6、ASN 和 CIDR 信息。" />
+        <meta property="og:image" content="https://example.com/image.jpg" />
+        <meta property="og:url" content="https://example.com" />
+        <meta property="og:type" content="website" />
       </Head>
       <main className={"w-full h-full grid place-items-center p-4 md:p-6"}>
         <div className={"flex flex-col items-center w-full h-fit max-w-[568px]"}>
