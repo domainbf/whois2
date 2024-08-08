@@ -73,15 +73,15 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* Open Graph meta tags */}
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteDescription} />
-        <meta property="og:image" content={ogImage} /> {/* 使用本地的 whois.ls.png */}
-        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content="https://yourdomain.com" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Card meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={siteTitle} />
         <meta name="twitter:description" content={siteDescription} />
-        <meta name="twitter:image" content={ogImage} /> {/* 使用本地的 whois.ls.png */}
+        <meta name="twitter:image" content={ogImage} />
       </Head>
       <Toaster />
       <ThemeProvider
@@ -124,7 +124,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg" // 修复了命名空间问题
+                  xmlns="" // 修复了命名空间问题
                   className={`w-5 h-5 fill-primary`}
                 >
                   <title>Earth</title>
