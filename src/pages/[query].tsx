@@ -471,9 +471,21 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
   },
 );
 
+import React, { useEffect, useState } from "react";
+import { Input, Button, ScrollArea, Badge } from "@/components/ui";
+import { Search, Loader2, Send, CornerDownRight } from "@/components/icons";
+import { isEnter, toSearchURI, addHistory } from "@/lib/utils";
+import Link from "next/link";
+import ResultComp from "@/components/ResultComp"; // 假设 ResultComp 组件已提取到单独文件
+
+interface Props {
+  data: any;
+  target: string;
+}
+
 export default function Lookup({ data, target }: Props) {
-  const [inputDomain, setInputDomain] = React.useState<string>(target);
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [inputDomain, setInputDomain] = useState<string>(target);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const goStage = (target: string) => {
     setLoading(true);
@@ -485,34 +497,20 @@ export default function Lookup({ data, target }: Props) {
   }, [target]);
 
   return (
-    <ScrollArea className={`w-full h-full`}>
-      <main
-        className={
-          "relative w-full min-h-full grid place-items-center px-4 pt-20 pb-6"
-        }
-      >
-        <div
-          className={
-            "flex flex-col items-center w-full h-fit max-w-[568px] m-2"
-          }
-        >
-          <h1
-            className={
-              "text-lg md:text-2xl lg:text-3xl font-bold flex flex-row items-center select-none"
-            }
-          >
-            <Search
-              className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`}
-            />
+    <ScrollArea className="w-full h-full">
+      <main className="relative w-full min-h-full grid place-items-center px-4 pt-20 pb-6">
+        <div className="flex flex-col items-center w-full h-fit max-w-[568px] m-2">
+          <h1 className="text-lg md:text-2xl lg:text-3xl font-bold flex flex-row items-center select-none">
+            <Search className="w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0" />
             域名信息查询
           </h1>
-          <p className={"text-md text-center text-secondary"}>
+          <p className="text-md text-center text-secondary">
             请在下方输入要查找的域名或IP等信息
           </p>
-          <div className={"relative flex flex-row items-center w-full mt-2"}>
+          <div className="relative flex flex-row items-center w-full mt-2">
             <Input
-              className={`w-full text-left transition-all duration-300 hover:shadow`}
-              placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
+              className="w-full text-left transition-all duration-300 hover:shadow"
+              placeholder="domain name (e.g. google.com, 8.8.8.8)"
               value={inputDomain}
               onChange={(e) => setInputDomain(e.target.value)}
               onKeyDown={(e) => {
@@ -526,27 +524,26 @@ export default function Lookup({ data, target }: Props) {
               }}
             />
             <Button
-              size={`icon`}
-              variant={`outline`}
-              className={`absolute right-0 rounded-l-none`}
+              size="icon"
+              variant="outline"
+              className="absolute right-0 rounded-l-none"
               onClick={() => goStage(inputDomain)}
             >
               {loading ? (
-                <Loader2 className={`w-4 h-4 animate-spin`} />
+                <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <Send className={`w-4 h-4`} />
+                <Send className="w-4 h-4" />
               )}
             </Button>
           </div>
           <div
-            className={cn(
-              `flex items-center flex-row w-full text-xs mt-1.5 select-none text-secondary transition`,
-              loading && "text-primary",
-            )}
+            className={`flex items-center flex-row w-full text-xs mt-1.5 select-none text-secondary transition ${
+              loading ? "text-primary" : ""
+            }`}
           >
-            <div className={`flex-grow`} />
-            <CornerDownRight className={`w-3 h-3 mr-1`} />
-            <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
+            <div className="flex-grow" />
+            <CornerDownRight className="w-3 h-3 mr-1" />
+            <p className="px-1 py-0.5 border rounded-md">Enter</p>
           </div>
           <ResultComp data={data} target={target} />
         </div>
@@ -560,7 +557,11 @@ export default function Lookup({ data, target }: Props) {
             NIC.BN
           </Link>
           运营
-          <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
+          <Badge
+            variant="outline"
+            className="ml-1"
+            style={{ backgroundColor: "black", color: "white" }}
+          >
             <span className="ml-1">作者: Minghan Zhang</span>
           </Badge>
           <Badge variant="outline">v{VERSION}</Badge>
