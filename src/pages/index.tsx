@@ -107,7 +107,7 @@ export default function Home() {
           {/* 新增的动态域名显示部分，居中显示 */}
           <div className={"flex flex-row items-center justify-center w-full mt-2"}>
             <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
-              <span className="ml-1">正在出售：{domains[currentDomainIndex]}</span>
+              <span className="text-center">正在出售：{domains[currentDomainIndex]}</span>
             </Badge>
           </div>
           {history.length > 0 && (
@@ -143,7 +143,7 @@ export default function Home() {
                           "w-4 h-4 mr-1 shrink-0",
                           trashMode && "text-red-600/80",
                         )}
-                      />
+                      /> 
                       <p className={`grow text-ellipsis overflow-hidden`}>
                         {item}
                       </p>
