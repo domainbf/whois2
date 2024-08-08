@@ -1,4 +1,4 @@
-// src/components/QRCodeCard.tsx
+// src/components/ui/QRCodeCard.tsx
 import * as React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"; // 导入卡片组件
 
