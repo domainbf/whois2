@@ -28,7 +28,8 @@ const siteKeywords = strEnv(
 );
 
 // 使用本地图片
-const siteImage = "/gg.gif"; // 相对路径指向 public 文件夹中的图片
+const siteImage = "/gg.gif"; // 仍然用作网站左上角的 logo
+const ogImage = "/whois.ls.png"; // 用于 Open Graph 和 Twitter Card 的图片
 
 interface Announcement {
   text: string;
@@ -71,8 +72,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
         {/* Open Graph meta tags */}
         <meta property="og:title" content={siteTitle} />
-        <meta property="og:description" content={siteDescription} />
-        <meta property="og:image" content={siteImage} />
+        <meta property="og:description" contentsiteDescription />
+        <meta property="og:image" content={ogImage} /> {/* 使用 ogImage */}
         <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
         <meta property="og:type" content="website" />
 
@@ -80,7 +81,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={siteTitle} />
         <meta name="twitter:description" content={siteDescription} />
-        <meta name="twitter:image" content={siteImage} />
+        <meta name="twitter:image" content={ogImage} /> {/* 使用 ogImage */}
       </Head>
       <Toaster />
       <ThemeProvider
@@ -92,7 +93,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className={cn(`relative w-full h-full`, inter.className)}>
           <div
             className={cn(
-              `flex flex-row items-center space-x-4`,
+              `flex flex-row items-center space-x-`,
               `absolute top-4 left-4 z-50` // 使用 absolute 使其在页面顶部固定
             )}
           >
@@ -123,7 +124,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg" // Added namespace
+                  xmlns="" // Added namespace
                   className={`w-5 h-5 fill-primary`}
                 >
                   <title>Earth</title>
