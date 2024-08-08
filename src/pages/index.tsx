@@ -1,24 +1,4 @@
-import Head from "next/head";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  CheckIcon,
-  ChevronRight,
-  CornerDownRight,
-  Link2,
-  Loader2,
-  Search,
-  Send,
-  Trash2,
-  Undo2,
-} from "lucide-react";
-import React, { useEffect } from "react";
-import Link from "next/link";
-import { cn, isEnter, toSearchURI } from "@/lib/utils";
-import { addHistory, listHistory, removeHistory } from "@/lib/history";
-import Icon from "@/components/icon";
-import Clickable from "@/components/motion/clickable";
-import { Badge } from "@/components/ui/badge"; // 添加Badge组件
+// ... existing imports ...
 
 export default function Home() {
   const [domain, setDomain] = React.useState<string>("");
@@ -26,13 +6,13 @@ export default function Home() {
   const [history, setHistory] = React.useState<string[]>([]);
   const [trashMode, setTrashMode] = React.useState<boolean>(false);
   const [currentDomainIndex, setCurrentDomainIndex] = React.useState(0);
-  const domains = ["NIC.BN", "AI.KN", "L.KE", "F.AF"]; // 域名数组
+  const domains = ["NIC.BN", "AI.KN", "L.KE", "F.AF", "TOP.VG", "GAME.KG", "DOMAIN.BF", "CXL.NET", "WHOIS.LS", "HELLO.UY", "DEV.UG",]; 
 
   useEffect(() => {
     setHistory(listHistory());
     const interval = setInterval(() => {
       setCurrentDomainIndex((prevIndex) => (prevIndex + 1) % domains.length);
-    }, 3000); // 每3秒切换域名
+    }, 2000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -119,8 +99,8 @@ export default function Home() {
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
-          {/* 新增的动态域名显示部分 */}
-          <div className={"flex flex-row items-center w-full mt-2"}>
+          {/* 新增的动态域名显示部分，居中显示 */}
+          <div className={"flex flex-row items-center justify-center w-full mt-2"}>
             <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
               <span className="ml-1">正在出售：{domains[currentDomainIndex]}</span>
             </Badge>
@@ -189,3 +169,4 @@ export default function Home() {
     </>
   );
 }
+
