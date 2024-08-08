@@ -19,7 +19,7 @@ import { cn, isEnter, toSearchURI } from "@/lib/utils";
 import { addHistory, listHistory, removeHistory } from "@/lib/history";
 import Icon from "@/components/icon";
 import Clickable from "@/components/motion/clickable";
-import { QRCodeCard } from "@/components/ui/card"; // 从 card.tsx 导入 QRCodeCard
+import { QRCodeCard } from "@/components/ui/QRCodeCard"; // 从 QRCodeCard 导入
 
 export default function Home() {
   const [domain, setDomain] = React.useState<string>("");
@@ -53,21 +53,10 @@ export default function Home() {
       </Head>
       <main className={"w-full h-full grid place-items-center p-4 md:p-6"}>
         <div className={"flex flex-col items-center w-full h-fit max-w-[568px]"}>
-          <h1
-            className={
-              "text-lg md:text-2xl lg:text-3xl font-bold flex flex-row items-center select-none"
-            }
-          >
-            <Search
-              className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`}
-            />
-             WHOIS.LS
+          <h1 className={"text-lg md:text-2xl lg:text-3xl font-bold flex flex-row items-center select-none"}>
+            <Search className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`} />
+            WHOIS.LS
           </h1>
-          <div
-            className={"flex flex-row items-center flex-wrap justify-center mt-1"}
-          >
-            {/* 其他功能项 */}
-          </div>
           <div className={"relative flex flex-row items-center w-full mt-2"}>
             <Input
               className={`w-full text-center transition-all duration-300 hover:shadow`}
@@ -102,23 +91,11 @@ export default function Home() {
               </Button>
             </Link>
           </div>
-          <div
-            className={cn(
-              `flex items-center flex-row w-full text-xs mt-1.5 select-none text-secondary transition`,
-              loading && "text-primary",
-            )}
-          >
-            <div className={`flex-grow`} />
-            <CornerDownRight className={`w-3 h-3 mr-1`} />
-            <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
-          </div>
           {/* 添加 QRCodeCard 组件 */}
           <QRCodeCard className="my-4" />
           {history.length > 0 && (
             <>
-              <div
-                className={`mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-fit`}
-              >
+              <div className={`mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-fit`}>
                 {history.map((item, index) => (
                   <Clickable tapScale={0.985} key={index}>
                     <Link
@@ -133,7 +110,6 @@ export default function Home() {
                       onClick={(e) => {
                         if (trashMode) {
                           e.preventDefault();
-
                           removeHistory(item);
                           setHistory(listHistory());
                           return;
@@ -144,17 +120,10 @@ export default function Home() {
                     >
                       <Icon
                         icon={!trashMode ? <Link2 /> : <Trash2 />}
-                        className={cn(
-                          "w-4 h-4 mr-1 shrink-0",
-                          trashMode && "text-red-600/80",
-                        )}
+                        className={cn("w-4 h-4 mr-1 shrink-0", trashMode && "text-red-600/80")}
                       />
-                      <p className={`grow text-ellipsis overflow-hidden`}>
-                        {item}
-                      </p>
-                      <ChevronRight
-                        className={`transition-all shrink-0 w-4 h-4 ml-auto mr-1 group-hover:mr-0`}
-                      />
+                      <p className={`grow text-ellipsis overflow-hidden`}>{item}</p>
+                      <ChevronRight className={`transition-all shrink-0 w-4 h-4 ml-auto mr-1 group-hover:mr-0`} />
                     </Link>
                   </Clickable>
                 ))}
@@ -166,10 +135,7 @@ export default function Home() {
                   onClick={() => setTrashMode(!trashMode)}
                   tapClassName={`ml-auto`}
                 >
-                  <Icon
-                    icon={trashMode ? <Undo2 /> : <Trash2 />}
-                    className={`w-3.5 h-3.5`}
-                  />
+                  <Icon icon={trashMode ? <Undo2 /> : <Trash2 />} className={`w-3.5 h-3.5`} />
                 </Button>
               </div>
             </>
