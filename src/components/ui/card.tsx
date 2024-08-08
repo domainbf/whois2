@@ -1,6 +1,6 @@
+// src/components/ui/card.tsx
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import QRCode from "qrcode.react"; // 确保导入 qrcode.react
 
 // Card Components
 const Card = React.forwardRef<
@@ -10,7 +10,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "rounded-lg border bg-card text-card-foreground shadow-sm relative", // 添加 relative
       className,
     )}
     {...props}
@@ -88,10 +88,19 @@ const QRCodeCard = ({ className }) => {
         <CardDescription>扫描下面的二维码以访问此页面</CardDescription>
       </CardHeader>
       <CardContent>
-        <QRCode value={currentUrl} /> {/* 使用当前 URL 生成二维码 */}
+        <img
+          src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(currentUrl)}&size=200x200`}
+          alt="二维码"
+        /> {/* 使用当前 URL 生成二维码 */}
       </CardContent>
       <CardFooter>
         <p>这是二维码的底部内容</p>
+        <div className="absolute bottom-4 right-4"> {/* 添加绝对定位 */}
+          <img
+            src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(currentUrl)}&size=100x100`}
+            alt="小二维码"
+          /> {/* 小二维码 */}
+        </div>
       </CardFooter>
     </Card>
   );
