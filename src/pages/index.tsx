@@ -127,7 +127,7 @@ export default function Home() {
           {/* 新增的动态域名显示部分，居中显示在搜索框下方 */}
           <div className={"flex flex-row items-center justify-center w-full mt-2"}>
             <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
-              <span className="text-center">正在出售：{domains[currentDomainIndex]}</span>
+              <span className="text-center">Part of my domain：{domains[currentDomainIndex]}</span>
             </Badge>
           </div>
           {history.length > 0 && (
