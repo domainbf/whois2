@@ -472,7 +472,7 @@ const ResultComp = React.forwardRef<HTMLDivElement, Props>(
 );
 
 import React, { useEffect } from "react";
-import { Input, Button, ScrollArea, cn, Badge } from "@/components/ui";
+import { Input, Button, ScrollArea, Badge } from "@/components/ui";
 import { Search, Loader2, Send, CornerDownRight } from "@/components/icons";
 import { isEnter, toSearchURI, addHistory } from "@/lib/utils";
 import Link from "next/link";
