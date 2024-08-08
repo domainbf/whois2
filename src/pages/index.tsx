@@ -1,3 +1,4 @@
+// src/pages/index.tsx
 import Head from "next/head";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ import { cn, isEnter, toSearchURI } from "@/lib/utils";
 import { addHistory, listHistory, removeHistory } from "@/lib/history";
 import Icon from "@/components/icon";
 import Clickable from "@/components/motion/clickable";
-import { QRCodeCard } from "@/components/QRCodeCard"; // 导入 QRCodeCard 组件
+import { QRCodeCard } from "@/components/ui/card"; // 从 card.tsx 导入 QRCodeCard
 
 export default function Home() {
   const [domain, setDomain] = React.useState<string>("");
