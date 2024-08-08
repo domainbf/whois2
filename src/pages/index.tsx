@@ -18,6 +18,7 @@ import { cn, isEnter, toSearchURI } from "@/lib/utils";
 import { addHistory, listHistory, removeHistory } from "@/lib/history";
 import Icon from "@/components/icon";
 import Clickable from "@/components/motion/clickable";
+import { QRCodeCard } from "@/components/QRCodeCard"; // 导入 QRCodeCard 组件
 
 export default function Home() {
   const [domain, setDomain] = React.useState<string>("");
@@ -64,46 +65,7 @@ export default function Home() {
           <div
             className={"flex flex-row items-center flex-wrap justify-center mt-1"}
           >
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>Domain</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>IPv4</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>IPv6</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>ASN</p>
-            </div>
-            <div
-              className={
-                "flex mx-1 my-0.5 flex-row items-center text-md text-secondary transition hover:text-primary cursor-pointer"
-              }
-            >
-              <CheckIcon className={`w-4 h-4 mr-1 shrink-0`} />
-              <p>CIDR</p>
-            </div>
+            {/* 其他功能项 */}
           </div>
           <div className={"relative flex flex-row items-center w-full mt-2"}>
             <Input
@@ -149,6 +111,8 @@ export default function Home() {
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
+          {/* 添加 QRCodeCard 组件 */}
+          <QRCodeCard className="my-4" />
           {history.length > 0 && (
             <>
               <div
