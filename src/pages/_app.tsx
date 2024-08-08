@@ -20,7 +20,7 @@ function strEnv(variableName: string, defaultValue: string): string {
 const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "Whois.ls");
 const siteDescription = strEnv(
   "NEXT_PUBLIC_SITE_DESCRIPTION",
-  "Whois 查询工具，支持域名/IPv4/IPv6/ASN/CIDR Whois 查询，帮助你获取域名的状态和持有人信息。"
+  "域名查询工具，支持域名/IPv4/IPv6/ASN/CIDR查询，帮助你获取域名的状态和持有人信息。"
 );
 const siteKeywords = strEnv(
   "NEXT_PUBLIC_SITE_KEYWORDS",
@@ -73,15 +73,15 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* Open Graph meta tags */}
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteDescription} />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:url" content="https://yourdomain.com" />
-        <meta property="og:type" content="website" />
+        <meta property="og:image" content={https://wubaohu.com/wp-content/uploads/2024/08/whois.ls_.png} />
+        <meta property="og:url" content="https://whois.ls" />
+        <meta property="og:type" content="whois.ls" />
 
         {/* Twitter Card meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={siteTitle} />
         <meta name="twitter:description" content={siteDescription} />
-        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image" content={https://wubaohu.com/wp-content/uploads/2024/08/whois.ls_.png} />
       </Head>
       <Toaster />
       <ThemeProvider
