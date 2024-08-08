@@ -1,4 +1,24 @@
-// ... existing imports ...
+import Head from "next/head";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  CheckIcon,
+  ChevronRight,
+  CornerDownRight,
+  Link2,
+  Loader2,
+  Search,
+  Send,
+  Trash2,
+  Undo2,
+} from "lucide-react";
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { cn, isEnter, toSearchURI } from "@/lib/utils";
+import { addHistory, listHistory, removeHistory } from "@/lib/history";
+import Icon from "@/components/icon";
+import Clickable from "@/components/motion/clickable";
+import { Badge } from "@/components/ui/badge"; // 添加Badge组件
 
 export default function Home() {
   const [domain, setDomain] = React.useState<string>("");
@@ -11,13 +31,13 @@ export default function Home() {
     "TOP.VG", "GAME.KG", "DOMAIN.BF", 
     "CXL.NET", "WHOIS.LS", "HELLO.UY", 
     "DEV.UG"
-  ]; 
+  ]; // 更新域名数组
 
   useEffect(() => {
     setHistory(listHistory());
     const interval = setInterval(() => {
       setCurrentDomainIndex((prevIndex) => (prevIndex + 1) % domains.length);
-    }, 2000); 
+    }, 3000); // 每3秒切换域名
     return () => clearInterval(interval);
   }, []);
 
@@ -104,7 +124,7 @@ export default function Home() {
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
-          {/* 新增的动态域名显示部分，居中显示 */}
+          {/* 新增的动态域名显示部分，居中显示在搜索框下方 */}
           <div className={"flex flex-row items-center justify-center w-full mt-2"}>
             <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
               <span className="text-center">正在出售：{domains[currentDomainIndex]}</span>
@@ -143,7 +163,7 @@ export default function Home() {
                           "w-4 h-4 mr-1 shrink-0",
                           trashMode && "text-red-600/80",
                         )}
-                      /> 
+                      />
                       <p className={`grow text-ellipsis overflow-hidden`}>
                         {item}
                       </p>
