@@ -28,7 +28,7 @@ const siteKeywords = strEnv(
 );
 
 // 使用本地图片
-const siteImage = "/whoislogo.jpeg"; // 用作网站左上角的 logo 和社交媒体缩略图
+const siteImage = "/gg.gif"; // 仍然用作网站左上角的 logo
 const ogImage = "/whoislogo.jpeg"; // 用于 Open Graph 和 Twitter Card 的图片
 
 interface Announcement {
@@ -129,7 +129,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg" // 修复了命名空间问题
+                  xmlns="" // 修复了命名空间问题
                   className={`w-5 h-5 fill-primary`}
                 >
                   <title>Earth</title>
