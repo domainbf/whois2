@@ -99,7 +99,7 @@ const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, lo
           <div className={"relative flex flex-row items-center w-full mt-2"}>
             <Input
               className={`w-full text-center transition-all duration-300 hover:shadow`}
-              placeholder={`domain name (e.g. whois.ls, 8.8.8.8)`}
+              placeholder={`输入要查询的内容 ( whois.ls, 8.8.8.8)`}
               value={inputDomain}
               onChange={(e) => setInputDomain(e.target.value)}
               onKeyDown={(e) => {
