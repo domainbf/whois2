@@ -29,7 +29,7 @@ const QRCodeCard: React.FC<QRCodeCardProps> = ({ className }) => {
     <Card className={className}>
       <CardHeader>
         <CardTitle>二维码</CardTitle>
-        <CardDescription>扫描下面的二维码以访问此页面</CardDescription>
+        <CardDescription>扫描下面的二维���以访问此页面</CardDescription>
       </CardHeader>
       <CardContent>
         <QRCode value={currentUrl} /> {/* 使用当前 URL 生成二维码 */}
