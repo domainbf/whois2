@@ -21,7 +21,8 @@ const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "Whois.ls");
 const siteDescription = strEnv(
   "NEXT_PUBLIC_SITE_DESCRIPTION",
   "Whois 查询工具，支持域名/IPv4/IPv6/ASN/CIDR Whois 查询，帮助你获取域名的状态和持有人信息。"
-);const siteKeywords = strEnv(
+);
+const siteKeywords = strEnv(
   "NEXT_PUBLIC_SITE_KEYWORDS",
   "whois.ls, 域名Whois查询, DNS查询, ip查询, 域名持有人查询, Lookup, Tool, 域名状态"
 );
@@ -88,73 +89,7 @@ export default function App({ Component, pageProps }: AppProps) {
         enableSystem
         disableTransitionOnChange
       >
-        <div className={cn(`relative w-full h-full`, inter.className)}> {/* 使用 inter.className */}
-          <div
-            className={cn(
-              `flex flex-row items-center space-x-4`,
-              `absolute top-4 left-4 z-50` // 使用 absolute 使其在页面顶部固定
-            )}
-          >
-            <img src={siteImage} alt="Logo" className="w-8 h-8" />
-            <div className="text-sm">
-              {currentAnnouncement.link ? (
-                <a
-                  href={currentAnnouncement.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  {currentAnnouncement.text}
-                </a>
-              ) : (
-                currentAnnouncement.text
-              )}
-            </div>
-          </div>
-          <div
-            className={cn(
-              `absolute top-4 right-4 flex flex-row items-center z-50 space-x-2`
-            )}
-          >
-            <ThemeToggle />
-            <Link href={`https://domain.bf`} passHref>
-              <Button variant={`outline`} size={`icon`} tapEnabled>
-                <svg
-                  role="img"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg" // Added namespace
-                  className={`w-5 h-5 fill-primary`}
-                >
-                  <title>Earth</title>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.
-<>
-      <Head>
-        <title>{siteTitle}</title>
-        <meta name="description" content={siteDescription} />
-        <meta name="keywords" content={siteKeywords} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {/* Open Graph meta tags */}
-        <meta property="og:title" content={siteTitle} />
-        <meta property="og:description" content={siteDescription} />
-        <meta property="og:image" content={siteImage} />
-        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
-        <meta property="og:type" content="website" />
-
-        {/* Twitter Card meta tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={siteTitle} />
-        <meta name="twitter:description" content={siteDescription} />
-        <meta name="twitter:image" content={siteImage} />
-      </Head>
-      <Toaster />
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <div className={cn(`relative w-full h-full`, inter.className)}> {/* 使用 inter.className */}
+        <div className={cn(`relative w-full h-full`, inter.className)}>
           <div
             className={cn(
               `flex flex-row items-center space-x-4`,
