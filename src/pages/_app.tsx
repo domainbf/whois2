@@ -72,7 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         {/* Open Graph meta tags */}
         <meta property="og:title" content={siteTitle} />
-        <meta property="og:description" contentsiteDescription />
+        <meta property="og:description" content={siteDescription} /> {/* 修复的部分 */}
         <meta property="og:image" content={ogImage} /> {/* 使用 ogImage */}
         <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
         <meta property="og:type" content="website" />
@@ -93,8 +93,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className={cn(`relative w-full h-full`, inter.className)}>
           <div
             className={cn(
-              `flex flex-row items-center space-x-`,
-              `absolute top-4 left-4 z-50` // 使用 absolute 使其在页面顶部固定
+              `flex flex-row items-center space-x-4`, // 补充 space-x-4
+              `absolute top-4 left-4 z-50`
             )}
           >
             <img src={siteImage} alt="Logo" className="w-8 h-8" />
