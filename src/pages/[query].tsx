@@ -559,7 +559,7 @@ export default function Lookup({ data, target }: Props) {
           <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
             <span className="ml-1">作者: Minghan Zhang</span>
           </Badge>
-          <Badge variant="outline">v{NAME}</Badge>
+          <Badge variant="outline">v{VERSION}</Badge>
         </div>
       </main>
     </ScrollArea>
