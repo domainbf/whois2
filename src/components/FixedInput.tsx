@@ -3,21 +3,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   CheckIcon,
-  ChevronRight,
   CornerDownRight,
-  Link2,
   Loader2,
   Search,
   Send,
-  Trash2,
-  Undo2,
 } from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
 import { cn, isEnter, toSearchURI } from "@/lib/utils";
-import { addHistory, listHistory, removeHistory } from "@/lib/history";
 import ResultComp from './ResultComp';
-import { VERSION } from "@/lib/env";
 
 interface FixedInputProps {
   inputDomain: string;
@@ -32,11 +26,8 @@ const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, lo
     window.location.href = toSearchURI(inputDomain);
   };
 
-  // 创建一个符合 ResultComp 预期的 result 对象
-  const result = {
-    deletionDate: "2023-01-01T00:00:00Z", // 示例日期
-    availableDate: "2023-12-31T00:00:00Z", // 示例日期
-  };
+  // 根据 inputDomain 生成实际的查询结果
+  const result = inputDomain ? `查询的内容是: ${inputDomain}` : "请输入要查询的内容"; // 动态生成结果
 
   return (
     <>
@@ -149,8 +140,7 @@ const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, lo
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
-          {/* 更新 ResultComp 的 result 属性为对象 */}
-          <ResultComp result={result} target={inputDomain} />
+          <ResultComp result={result} /> {/* 将动态生成的结果传入 ResultComp */}
         </div>
       </main>
     </>
