@@ -18,16 +18,17 @@ interface FixedInputProps {
   setInputDomain: (value: string) => void;
   loading: boolean;
   setLoading: (value: boolean) => void;
+  result: string; // 添加 result 属性
 }
 
-const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, loading, setLoading }) => {
+const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, loading, setLoading, result }) => {
   const goStage = (target: string) => {
     setLoading(true);
     window.location.href = toSearchURI(inputDomain);
   };
 
   // 根据 inputDomain 生成实际的查询结果
-  const result = inputDomain ? `查询的内容是: ${inputDomain}` : "请输入要查询的内容"; // 动态生成结果
+  const dynamicResult = inputDomain ? `查询的内容是: ${inputDomain}` : "请输入要查询的内容"; // 动态生成结果
 
   return (
     <>
@@ -140,7 +141,7 @@ const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, lo
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
-          <ResultComp result={result} /> {/* 将动态生成的结果传入 ResultComp */}
+          <ResultComp result={dynamicResult} /> {/* 将动态生成的结果传入 ResultComp */}
         </div>
       </main>
     </>
