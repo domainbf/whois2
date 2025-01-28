@@ -32,4 +32,4 @@ jobs:
           git commit -m "chore: update dependencies"
           git push origin main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
