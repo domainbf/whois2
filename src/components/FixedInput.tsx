@@ -32,6 +32,12 @@ const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, lo
     window.location.href = toSearchURI(inputDomain);
   };
 
+  // 创建一个符合 ResultComp 预期的 result 对象
+  const result = {
+    deletionDate: "2023-01-01T00:00:00Z", // 示例日期
+    availableDate: "2023-12-31T00:00:00Z", // 示例日期
+  };
+
   return (
     <>
       <Head>
@@ -143,7 +149,8 @@ const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, lo
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
-          <ResultComp result="This is a placeholder result." />
+          {/* 更新 ResultComp 的 result 属性为对象 */}
+          <ResultComp result={result} target={inputDomain} />
         </div>
       </main>
     </>
