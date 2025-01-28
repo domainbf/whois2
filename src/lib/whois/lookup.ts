@@ -1,5 +1,5 @@
 import { MAX_IP_WHOIS_FOLLOW, MAX_WHOIS_FOLLOW } from "@/lib/env";
-import whois from "domainbf/whois-raw";
+import whois from "github:domainbf/whois2";
 import { WhoisResult } from "@/lib/whois/types";
 import { parseWhoisData } from "@/lib/whois/tld_parser";
 import { countDuration, extractDomain, toErrorMessage } from "@/lib/utils";
