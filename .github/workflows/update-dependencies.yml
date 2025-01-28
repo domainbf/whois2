@@ -30,6 +30,4 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "chore: update dependencies"
-          git push origin main
-        env:
-          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/domainbf/whois2.git HEAD:main
