@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ResultCompProps {
-  result: string; // 结果现在是一个字符串
+  result: string; // 确保 result 属性存在
 }
 
 const ResultComp: React.FC<ResultCompProps> = ({ result }) => {
