@@ -1,64 +1,87 @@
 import React from 'react';
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  CheckIcon,
+  CornerDownRight,
+  Loader2,
+  Search,
+  Send,
+} from "lucide-react";
+import Head from "next/head";
+import Link from "next/link";
+import { cn, isEnter, toSearchURI } from "@/lib/utils";
+import ResultComp from './ResultComp';
 
-interface RowProps {
-  name: string;
-  value: string | undefined;
-  hidden?: boolean;
+interface FixedInputProps {
+  inputDomain: string;
+  setInputDomain: (value: string) => void;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
 }
 
-const Row: React.FC<RowProps> = ({ name, value, hidden }) => {
-  if (hidden) return null; // 如果 hidden 为 true，则不渲染这一行
+const FixedInput: React.FC<FixedInputProps> = ({ inputDomain, setInputDomain, loading, setLoading }) => {
+  const goStage = (target: string) => {
+    setLoading(true);
+    window.location.href = toSearchURI(inputDomain);
+  };
+
+  // 创建一个符合 ResultComp 预期的 result 对象
+  const result = {
+    deletionDate: "2023-01-01T00:00:00Z", // 示例日期
+    availableDate: "2023-12-31T00:00:00Z", // 示例日期
+  };
+
   return (
-    <tr>
-      <td>{name}</td>
-      <td>{value}</td>
-    </tr>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta property="og:title" content="WHOIS.LS - 查询域名和IP信息" />
+        <meta property="og:description" content="使用 WHOIS.LS 查询域名、IPv4、IPv6、ASN 和 CIDR 信息。" />
+        <meta property="og:image" content="https://example.com/image.jpg" />
+        <meta property="og:url" content="https://example.com" />
+        <meta property="og:type" content="website" />
+      </Head>
+      <main className={"w-full h-full grid place-items-center p-4 md:p-6"}>
+        <div className={"flex flex-col items-center w-full h-fit max-w-[568px]"}>
+          <h1 className={"text-lg md:text-2xl lg:text-3xl font-bold flex flex-row items-center select-none"}>
+            <Search className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`} />
+            WHOIS.LS
+          </h1>
+          <div className={"relative flex flex-row items-center w-full mt-2"}>
+            <Input
+              className={`w-full text-center transition-all duration-300 hover:shadow`}
+              placeholder={`输入要查询的内容 ( whois.ls, 8.8.8.8)`}
+              value={inputDomain}
+              onChange={(e) => setInputDomain(e.target.value)}
+              onKeyDown={(e) => {
+                if (isEnter(e)) {
+                  goStage(inputDomain);
+                }
+              }}
+              style={{ touchAction: 'manipulation', userSelect: 'none' }} // 禁止页面缩放
+            />
+            <Link href={toSearchURI(inputDomain)} className={`absolute right-0`} onClick={() => inputDomain.length > 0 && goStage(inputDomain)}>
+              <Button size={`icon`} variant={`outline`} className={`rounded-l-none transition`} disabled={inputDomain.length === 0}>
+                {loading ? (
+                  <Loader2 className={`w-4 h-4 animate-spin`} />
+                ) : (
+                  <Send className={`w-4 h-4`} />
+                )}
+              </Button>
+            </Link>
+          </div>
+          <div className={cn(`flex items-center flex-row w-full text-xs mt-1.5 select-none text-secondary transition`, loading && "text-primary")}>
+            <div className={`flex-grow`} />
+            <CornerDownRight className={`w-3 h-3 mr-1`} />
+            <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
+          </div>
+          {/* 使用对象作为 result 属性 */}
+          <ResultComp result={result} target={inputDomain} />
+        </div>
+      </main>
+    </>
   );
 };
 
-interface ResultCompProps {
-  result: {
-    deletionDate?: string;
-    availableDate?: string;
-  };
-  target: string; // 假设你还需要传入 target
-}
-
-const ResultComp: React.FC<ResultCompProps> = ({ result, target }) => {
-  // 日期格式化函数
-  const toReadableISODate = (date?: string): string | undefined => {
-    if (!date || date === "Unknown") return undefined;
-    const parsedDate = new Date(date);
-    return parsedDate.toISOString().split('T')[0]; // 返回 YYYY-MM-DD 格式
-  };
-
-  return (
-    <div className="result-comp">
-      <h2>Search Result for {target}</h2>
-      <table className="result-table">
-        <thead>
-          <tr>
-            <th>Field</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* 添加新的行以显示删除日期和再次可用日期 */}
-          <Row
-            name="域名删除日期:"
-            value={toReadableISODate(result.deletionDate)}
-            hidden={!result.deletionDate || result.deletionDate === "Unknown"}
-          />
-          <Row
-            name="域名再次可用日期:"
-            value={toReadableISODate(result.availableDate)}
-            hidden={!result.availableDate || result.availableDate === "Unknown"}
-          />
-          {/* 其他结果行可以在这里添加 */}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-export default ResultComp;
+export default FixedInput;
