@@ -14,6 +14,8 @@ export type WhoisAnalyzeResult = {
   updatedDate: string;
   creationDate: string;
   expirationDate: string;
+  deletionDate?: string; // 添加域名删除日期
+  availableDate?: string; // 添加域名再次可用日期
   status: DomainStatusProps[];
   nameServers: string[];
   registrantOrganization: string;
@@ -47,6 +49,8 @@ export const initialWhoisAnalyzeResult: WhoisAnalyzeResult = {
   updatedDate: "Unknown",
   creationDate: "Unknown",
   expirationDate: "Unknown",
+  deletionDate: "Unknown", // 初始化域名删除日期
+  availableDate: "Unknown", // 初始化域名再次可用日期
   status: [],
   nameServers: [],
   registrantOrganization: "Unknown",
