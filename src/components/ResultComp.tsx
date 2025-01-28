@@ -20,7 +20,6 @@ interface ResultCompProps {
   result: {
     deletionDate?: string;
     availableDate?: string;
-    // 其他字段...
   };
   target: string; // 假设你还需要传入 target
 }
@@ -35,7 +34,7 @@ const ResultComp: React.FC<ResultCompProps> = ({ result, target }) => {
 
   return (
     <div className="result-comp">
-      <h2>Search Result</h2>
+      <h2>Search Result for {target}</h2>
       <table className="result-table">
         <thead>
           <tr>
