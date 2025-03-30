@@ -557,7 +557,7 @@ export default function Lookup({ data, target }: Props) {
           </Link>
           运营
           <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
-            <span className="ml-1">作者: Minghan Zhang</span>
+            <span className="ml-1">不讲·李</span>
           </Badge>
           <Badge variant="outline">v{VERSION}</Badge>
         </div>
