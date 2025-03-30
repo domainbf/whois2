@@ -561,9 +561,6 @@ export default function Lookup({ data, target }: Props) {
           </Badge>
           <Badge variant="outline">v{VERSION}</Badge>
         </div>
-        <!-- Pixel Code - https://china.tn/ -->
-<script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script>
-<!-- END Pixel Code -->
       </main>
     </ScrollArea>
   );
