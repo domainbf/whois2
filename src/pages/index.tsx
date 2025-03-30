@@ -1,3 +1,8 @@
+根据您提供的错误信息，问题出在您试图在 JSX 中使用 HTML 注释的部分。JSX 不支持 HTML 注释（`<!-- ... -->`），而是需要使用 JavaScript 注释（`{/* ... */}`）。
+
+以下是修复后的完整代码，已将注释部分更正为 JSX 格式：
+
+```typescript
 import Head from "next/head";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -197,3 +202,4 @@ export default function Home() {
     </>
   );
 }
+```
