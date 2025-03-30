@@ -27,7 +27,7 @@ export default function Home() {
   const [trashMode, setTrashMode] = React.useState<boolean>(false);
   const [currentDomainIndex, setCurrentDomainIndex] = React.useState(0);
   const domains = [
-    "X.RW", "NIC.BN", "AI.KN", "L.KE", "F.AF", 
+   "X.RW", "NIC.BN", "AI.KN", "L.KE", "F.AF", 
     "TOP.VG", "GAME.KG", "DOMAIN.BF", 
     "CXL.NET", "WHOIS.LS", "HELLO.UY", 
     "DEV.UG"
@@ -73,7 +73,7 @@ export default function Home() {
             <Search
               className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`}
             />
-            WHOIS.LS
+             WHOIS.LS
           </h1>
           <div
             className={"flex flex-row items-center flex-wrap justify-center mt-1"}
@@ -130,9 +130,6 @@ export default function Home() {
               <span className="text-center">Part of my domain：{domains[currentDomainIndex]}</span>
             </Badge>
           </div>
-          {/* Pixel Code - https://china.tn/ */}
-          {/* <script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script> */}
-          {/* END Pixel Code */}
           {history.length > 0 && (
             <>
               <div
