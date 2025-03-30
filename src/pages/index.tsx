@@ -27,9 +27,9 @@ export default function Home() {
   const [trashMode, setTrashMode] = React.useState<boolean>(false);
   const [currentDomainIndex, setCurrentDomainIndex] = React.useState(0);
   const domains = [
-   "X.RW", "NIC.BN", "AI.KN", "L.KE", "F.AF", 
-    "TOP.VG", "GAME.KG", "DOMAIN.BF", 
-    "CXL.NET", "WHOIS.LS", "HELLO.UY", 
+   "X.RW", "NIC.BN", "AI.KN", "L.KE", "F.AF",
+    "TOP.VG", "GAME.KG", "DOMAIN.BF",
+    "CXL.NET", "WHOIS.LS", "HELLO.UY",
     "DEV.UG"
   ]; // 更新域名数组
 
@@ -189,10 +189,10 @@ export default function Home() {
             </>
           )}
         </div>
+        {/* Pixel Code - https://china.tn/ */}
+        <script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script>
+        {/* END Pixel Code */}
       </main>
-      <!-- Pixel Code - https://china.tn/ -->
-<script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script>
-<!-- END Pixel Code -->
     </>
   );
 }
