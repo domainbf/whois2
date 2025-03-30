@@ -124,9 +124,6 @@ export default function Home() {
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
-          <!-- Pixel Code - https://china.tn/ -->
-<script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script>
-<!-- END Pixel Code -->
           <div className={"flex flex-row items-center justify-center w-full mt-2"}>
             <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
               <span className="text-center">Part of my domain：{domains[currentDomainIndex]}</span>
@@ -193,6 +190,9 @@ export default function Home() {
           )}
         </div>
       </main>
+      <!-- Pixel Code - https://china.tn/ -->
+<script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script>
+<!-- END Pixel Code -->
     </>
   );
 }
