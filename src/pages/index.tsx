@@ -1,3 +1,4 @@
+// src/pages/index.tsx
 import Head from "next/head";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ import { cn, isEnter, toSearchURI } from "@/lib/utils";
 import { addHistory, listHistory, removeHistory } from "@/lib/history";
 import Icon from "@/components/icon";
 import Clickable from "@/components/motion/clickable";
-import { Badge } from "@/components/ui/badge"; // 添加Badge组件
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   const [domain, setDomain] = React.useState<string>("");
@@ -27,17 +28,17 @@ export default function Home() {
   const [trashMode, setTrashMode] = React.useState<boolean>(false);
   const [currentDomainIndex, setCurrentDomainIndex] = React.useState(0);
   const domains = [
-   "X.RW", "NIC.BN", "AI.KN", "L.KE", "F.AF", 
+    "X.RW", "NIC.BN", "AI.KN", "L.KE", "F.AF", 
     "TOP.VG", "GAME.KG", "DOMAIN.BF", 
     "CXL.NET", "WHOIS.LS", "HELLO.UY", 
     "DEV.UG"
-  ]; // 更新域名数组
+  ];
 
   useEffect(() => {
     setHistory(listHistory());
     const interval = setInterval(() => {
       setCurrentDomainIndex((prevIndex) => (prevIndex + 1) % domains.length);
-    }, 3000); // 每3秒切换域名
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -62,6 +63,9 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
+        {/* Pixel Code - https://china.tn/ */}
+        <script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script>
+        {/* END Pixel Code */}
       </Head>
       <main className={"w-full h-full grid place-items-center p-4 md:p-6"}>
         <div className={"flex flex-col items-center w-full h-fit max-w-[568px]"}>
@@ -124,7 +128,6 @@ export default function Home() {
             <CornerDownRight className={`w-3 h-3 mr-1`} />
             <p className={`px-1 py-0.5 border rounded-md`}>Enter</p>
           </div>
-          {/* 新增的动态域名显示部分，居中显示在搜索框下方 */}
           <div className={"flex flex-row items-center justify-center w-full mt-2"}>
             <Badge variant="outline" className="ml-1" style={{ backgroundColor: 'black', color: 'white' }}>
               <span className="text-center">Part of my domain：{domains[currentDomainIndex]}</span>
