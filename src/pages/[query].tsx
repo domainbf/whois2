@@ -547,7 +547,7 @@ export default function Lookup({ data, target }: Props) {
           <ResultComp data={data} target={target} />
         </div>
         <div className="mt-12 text-sm flex flex-row items-center font-medium text-muted-foreground select-none">
-          © 2024 由{" "}
+          © 2025 由{" "}
           <Link
             href="https://nic.bn"
             target="_blank"
@@ -561,6 +561,9 @@ export default function Lookup({ data, target }: Props) {
           </Badge>
           <Badge variant="outline">v{VERSION}</Badge>
         </div>
+        <!-- Pixel Code - https://china.tn/ -->
+<script defer src="https://china.tn/pixel/vyneXbR4gSRGqFfs"></script>
+<!-- END Pixel Code -->
       </main>
     </ScrollArea>
   );
