@@ -3,7 +3,15 @@ import whois from "whois-raw";
 import { WhoisResult, WhoisAnalyzeResult } from "@/lib/whois/types";
 import { parseWhoisData } from "@/lib/whois/tld_parser";
 import { countDuration, extractDomain, toErrorMessage } from "@/lib/utils";
+import config from "@/config/whoisConfig.json";
 
+export function getWhoisServer(tld: string) {
+  return config.servers[tld];
+}
+
+export function getWhoisRegex(tld: string) {
+  return config.regexes[tld];
+}
 export function getLookupOptions(domain: string) {
   const isDomain = !!extractDomain(domain);
   return {
