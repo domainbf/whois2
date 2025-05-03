@@ -39,6 +39,15 @@ const defaultRegex: DomainRegex = {
   notFound: "(No match for |Domain not found|NOT FOUND\\s)",
   unknownTLD: true,
 };
+const bnRegex: DomainRegex = {
+  domainName: "Domain Name:\\s*([^\\s]+)",
+  registrar: "Registrar:\\s*(.+)",
+  creationDate: "Creation Date:\\s*(.+)",
+  expirationDate: "Expiration Date:\\s*(.+)",
+  status: "Status:\\s*(.+)",
+  nameServers: "Name Server:\\s*(.+)",
+  notFound: "No match for",
+};
 
 const comRegex: DomainRegex = {
   domainName: "Domain Name: *([^\\s]+)",
